@@ -22,5 +22,20 @@ pipeline{
                 }
             }
         }
+        stage("Docker build y push"){
+            steps{
+                script{
+                    sh 'cd /var/lib/jenkins/workspace/mi_gradle_java_app'
+					sh 'docker build -t 13.38.75.173:8083/$JOB_NAME:v$BUILD_NUMBER .'
+                    sh 'docker tag 13.38.75.173:8083/$JOB_NAME:v$BUILD_NUMBER 13.38.75.173:8083/$JOB_NAME:latest'
+
+                    sh 'docker login -u admin -p Vinc.3006 13.38.75.173:8083'
+                    sh 'docker push 13.38.75.173:8083/$JOB_NAME:v$BUILD_NUMBER'
+                    sh 'docker push 13.38.75.173:8083/$JOB_NAME:latest'
+                    sh 'docker image rm -f 13.38.75.173:8083/$JOB_NAME:v$BUILD_NUMBER'
+                    sh 'docker image rm -f 13.38.75.173:8083/$JOB_NAME:latest'
+                }
+            }
+        }
     }
 }

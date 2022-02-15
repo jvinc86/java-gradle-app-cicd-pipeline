@@ -10,8 +10,8 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'Mi-Sonar-Admin-Token') {
-                        sh 'pwd'
                         sh 'whoami'
+                        sh 'pwd'
                         sh 'sudo chmod +x gradlew'
                         sh './gradlew sonarqube --stacktrace'
                     }

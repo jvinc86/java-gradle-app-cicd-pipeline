@@ -13,7 +13,7 @@ pipeline{
                         sh 'whoami'
                         sh 'pwd'
                         sh 'sudo chmod +x gradlew'
-                        sh '/var/lib/jenkins/workspace/mi_gradle_java_app/gradlew sonarqube --stacktrace'
+                        sh './gradlew sonarqube --warning-mode all'
                     }
                 }
             }

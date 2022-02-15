@@ -9,21 +9,11 @@ pipeline{
                         sh './gradlew sonarqube'
                     }
                 }
-            }
-            steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'Mi-Sonar-Admin-Token') {
-                            sh 'chmod +x gradlew.bat'
-                            sh './gradlew sonarqube --stacktrace'
-                    }
-
-                    timeout(time: 1, unit: 'HOURS') {
+                timeout(time: 1, unit: 'HOURS') {
                       def qg = waitForQualityGate()
                       if (qg.status != 'OK') {
                            error "Pipeline fue abortado debido a una falla en quality gate: ${qg.status}"
                       }
-                    }
-
                 }
             }
         }

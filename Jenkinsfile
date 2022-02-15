@@ -12,7 +12,7 @@ pipeline{
                     withSonarQubeEnv(credentialsId: 'Mi-Sonar-Admin-Token') {
                         sh 'whoami'
                         sh 'sudo chmod +x gradlew'
-                        sh './gradlew sonarqube'
+                        sh './gradlew sonarqube --stacktrace'
                     }
                 }
             }

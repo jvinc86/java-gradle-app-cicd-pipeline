@@ -15,10 +15,12 @@ pipeline{
                 }
             }
         }
+        stage("Buildear y obtener .war"){
+            steps{
+                script{
+                    sh './gradlew clean build'
+                }
+            }
+        }
     }
-    // post{
-    //     always{
-    //         echo "EXITO"
-    //     }
-    // }
 }

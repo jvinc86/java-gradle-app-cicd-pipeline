@@ -16,9 +16,9 @@ pipeline{
             }
         }
     }
-    post{
-        always{
-            echo "EXITO"
-        }
-    }
+    // post{
+    //     always{
+    //         echo "EXITO"
+    //     }
+    // }
 }
